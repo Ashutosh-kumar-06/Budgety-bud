@@ -17,16 +17,22 @@ export class GeminiProvider implements AIProvider {
 
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key=${this.apiKey}`;
 
-    // Map messages to Gemini format
-    const contents = messages.map(m => {
-      // System prompts might need special handling depending on gemini version, 
-      // typically we map 'system' to 'user' or pass it specially. 
-      // For simplicity here, we map system/user to 'user' and assistant to 'model'
-      return {
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }]
-      };
-    });
+    let systemText = '';
+    const contents = [];
+    
+    for (const m of messages) {
+      if (m.role === 'system') {
+        systemText += m.content + '\\n\\n';
+      } else {
+        const role = m.role === 'assistant' ? 'model' : 'user';
+        let text = m.content;
+        if (role === 'user' && systemText) {
+          text = systemText + text;
+          systemText = '';
+        }
+        contents.push({ role, parts: [{ text }] });
+      }
+    }
 
     const response = await fetch(endpoint, {
       method: 'POST',
