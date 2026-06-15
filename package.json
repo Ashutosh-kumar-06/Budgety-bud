@@ -1,0 +1,17 @@
+{
+  "name": "pocketbuddy",
+  "version": "1.0.0",
+  "description": "PocketBuddy – AI Financial & Wellness Assistant for Students",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "build": "npm run build:client && npm run build:server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
