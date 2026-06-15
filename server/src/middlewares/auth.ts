@@ -4,9 +4,7 @@ import { env } from '../config/env';
 import { AppError } from '../utils/AppError';
 
 export interface AuthRequest extends Request {
-  user?: {
-    id: string;
-  };
+  user?: any;
 }
 
 export const protect = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {

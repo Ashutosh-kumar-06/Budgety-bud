@@ -47,7 +47,7 @@ MessageSchema.index({ userId: 1, timestamp: -1 }); // global chat history
 
 MessageSchema.set('toJSON', {
   transform(_doc, ret) {
-    delete ret.__v;
+    delete (ret as any).__v;
     return ret;
   },
 });

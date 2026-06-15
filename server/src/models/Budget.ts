@@ -63,7 +63,7 @@ BudgetSchema.index(
 
 BudgetSchema.set('toJSON', {
   transform(_doc, ret) {
-    delete ret.__v;
+    delete (ret as any).__v;
     return ret;
   },
 });

@@ -56,7 +56,7 @@ HabitSchema.index({ userId: 1, date: -1 }); // date-range queries
 
 HabitSchema.set('toJSON', {
   transform(_doc, ret) {
-    delete ret.__v;
+    delete (ret as any).__v;
     return ret;
   },
 });

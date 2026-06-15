@@ -4,7 +4,7 @@ import * as transactionService from '../services/transactionService';
 
 export const createTransaction = async (req: AuthRequest, res: Response) => {
   if (!req.user) return;
-  const transaction = await transactionService.createTransaction(req.user.id, req.body);
+  const transaction = await transactionService.createTransaction((req.user.id as string), req.body);
   
   res.status(201).json({
     status: 'success',
@@ -25,7 +25,7 @@ export const getAllTransactions = async (req: AuthRequest, res: Response) => {
 
 export const getTransaction = async (req: AuthRequest, res: Response) => {
   if (!req.user) return;
-  const transaction = await transactionService.getTransactionById(req.user.id, req.params.id);
+  const transaction = await transactionService.getTransactionById((req.user.id as string), (req.params.id as string));
   
   res.status(200).json({
     status: 'success',
@@ -35,7 +35,7 @@ export const getTransaction = async (req: AuthRequest, res: Response) => {
 
 export const deleteTransaction = async (req: AuthRequest, res: Response) => {
   if (!req.user) return;
-  await transactionService.deleteTransaction(req.user.id, req.params.id);
+  await transactionService.deleteTransaction((req.user.id as string), (req.params.id as string));
   
   res.status(204).json({
     status: 'success',

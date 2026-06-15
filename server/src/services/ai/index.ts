@@ -9,6 +9,6 @@
 
 export * from './types';
 export * from './factory';
-export { OpenAIProvider } from './providers/openai';
-export { AnthropicProvider } from './providers/anthropic';
-export { GeminiProvider } from './providers/gemini';
+export { OpenAIProvider } from './OpenAIProvider';
+export { AnthropicProvider } from './AnthropicProvider';
+export { GeminiProvider } from './GeminiProvider';

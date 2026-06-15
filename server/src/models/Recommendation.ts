@@ -73,7 +73,7 @@ RecommendationSchema.index({ userId: 1, saved: 1 }); // user's saved items
 
 RecommendationSchema.set('toJSON', {
   transform(_doc, ret) {
-    delete ret.__v;
+    delete (ret as any).__v;
     return ret;
   },
 });
